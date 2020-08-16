@@ -69,6 +69,8 @@ export default function App() {
   const activeIndex = current - 1;
   const [direction, setDirection] = React.useState(1);
 
+  console.log({ current });
+
   const handlePrevious = () => {
     setDirection(-1);
     onPrev();
@@ -90,74 +92,54 @@ export default function App() {
         overflow="hidden"
       >
         <Flex align="center" justify="center" position="relative" w="80rem">
-          <AnimatePresence initial={false}>
-            <ImageContainer
-              as="img"
-              initial={{
-                opacity: 0
-              }}
-              enter={{
-                opacity: 1
-              }}
-              exit={{
-                opacity: 0
-              }}
-              transition="ease-out"
-              height="22rem"
-              src={images[previous - 1].path}
-              position="absolute"
-              left="0"
-              width="50%"
-              top="4rem"
-              cursor="pointer"
-              onClick={handlePrevious}
-              style={{
-                filter: "brightness(0.5)"
-              }}
-            />
-            <ImageContainer
-              initial="enter"
-              animate="center"
-              exit="exit"
-              variants={variants}
-              transition={{
-                x: { type: "spring", stiffness: 300, damping: 200 },
-                opacity: { duration: 0.2 }
-              }}
-              as="img"
-              key={current}
-              custom={direction}
-              width="60rem"
-              height="30rem"
-              rounded="6px"
-              src={images[activeIndex].path}
-              alt="imagea"
-            />
-            <ImageContainer
-              as="img"
-              initial={{
-                opacity: 0
-              }}
-              enter={{
-                opacity: 1
-              }}
-              exit={{
-                opacity: 0
-              }}
-              transition="ease-out"
-              height="22rem"
-              position="absolute"
-              src={images[next - 1].path}
-              right="0"
-              width="50%"
-              top="4rem"
-              cursor="pointer"
-              onClick={handleNext}
-              style={{
-                filter: "brightness(0.5)"
-              }}
-            />
-          </AnimatePresence>
+          <ImageContainer
+            as="img"
+            transition="ease-out"
+            height="22rem"
+            src={images[previous - 1].path}
+            position="absolute"
+            left="0"
+            width="50%"
+            top="4rem"
+            cursor="pointer"
+            onClick={handlePrevious}
+            style={{
+              filter: "brightness(0.5)"
+            }}
+          />
+          <ImageContainer
+            initial="enter"
+            animate="center"
+            exit="exit"
+            variants={variants}
+            transition={{
+              x: { type: "spring", stiffness: 300, damping: 200 },
+              opacity: { duration: 0.2 }
+            }}
+            as="img"
+            key={current}
+            custom={direction}
+            width="60rem"
+            height="30rem"
+            rounded="6px"
+            src={images[activeIndex].path}
+            alt="imagea"
+          />
+          <ImageContainer
+            as="img"
+            transition="ease-out"
+            height="22rem"
+            position="absolute"
+            src={images[next - 1].path}
+            right="0"
+            width="50%"
+            top="4rem"
+            cursor="pointer"
+            onClick={handleNext}
+            style={{
+              filter: "brightness(0.5)"
+            }}
+          />
         </Flex>
         <Flex align="center" mt="2rem">
           <IconButton mr="2rem" onClick={handlePrevious}>
