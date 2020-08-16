@@ -76,7 +76,7 @@ export default function App() {
 
   const handleNext = () => {
     setDirection(1);
-    onPrev();
+    onNext();
   };
 
   return (
